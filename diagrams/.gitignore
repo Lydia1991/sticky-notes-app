@@ -1,0 +1,19 @@
+# Environments
+.venv/
+venv/
+ENV/
+
+# Django generated files
+db.sqlite3
+staticfiles/
+media/
+__pycache__/
+*.pyc
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
