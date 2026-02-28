@@ -1,0 +1,35 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+<div class="row">
+    <h2 class="mb-4 text-center">My Sticky Notes</h2>
+    
+    {% for note in notes %}
+    
+    <div class="col-md-3 mb-4">
+    <div class="card shadow-sm h-100 sticky-note">
+        
+        <!-- Sticky Note Card -->
+        <div class="card shadow-sm h-100 sticky-note">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{ note.title }}</h5>
+                <p class="card-text text-muted">{{ note.content }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 d-flex justify-content-between">
+                <small class="text-muted">{{ note.created_at|date:"M d, Y" }}</small>
+                <!-- Delete Form -->
+                <form action="{% url 'note_delete' note.pk %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="lead text-muted">No notes yet. Click "+ New Note" to add one!</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
